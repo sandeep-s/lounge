@@ -1,0 +1,22 @@
+entity Airport {
+	code String,
+    name String,
+    description String,
+    coordinates Coordinates
+}
+
+entity Coordinates {
+	latitude String,
+	longitude String
+}
+
+entity Locations {
+	airport Airport
+}
+
+enum Language {
+    ENGLISH, DUTCH
+}
+
+// Set pagination options
+paginate Airport with pagination

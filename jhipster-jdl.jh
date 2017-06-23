@@ -1,0 +1,32 @@
+entity Airport {
+	code String,
+    name String,
+    description String    
+}
+
+entity Coordinates {
+	latitude String,
+	longitude String
+}
+
+entity Locations {	
+}
+
+enum Language {
+    ENGLISH, DUTCH
+}
+
+relationship OneToOne {
+	Airport{coordinates} to Coordinates{airport}
+}
+
+// defining multiple OneToMany relationships with comments
+relationship OneToMany {
+	Locations{airport} to Airport	
+}
+
+// Set pagination options
+paginate Airport with pagination
+
+// Set an angular suffix
+angularSuffix * with mySuffix
