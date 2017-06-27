@@ -5,10 +5,7 @@ import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.afkl.service.AirportService;
 
@@ -29,15 +26,13 @@ public class AirportController {
 		return airportService.getAirportDetails();
 	}
 
-	@RequestMapping(value = "/airports/code", method = GET)
-	public @ResponseBody String getAirportsByCode(@RequestParam String code) {
+	@RequestMapping(value = "/airports/{code}", method = GET)
+	public @ResponseBody String getAirportsByCode(@PathVariable String code) {
 		return airportService.getSpecificAiportDetail(code);
 	}
 
-	@RequestMapping(value = "/fares/origin/destination", method = GET)
-	public @ResponseBody String getAFare(@RequestParam Map<String, String> requestParams) {
-		String origin = requestParams.get("origin");
-		String destination = requestParams.get("destination");
+	@RequestMapping(value = "/fares/{origin}/{destination}", method = GET)
+	public @ResponseBody String getAFare(@PathVariable("origin") String origin, @PathVariable("destination") String destination) {
 		return airportService.getAFare(origin, destination);
 	}
 }

@@ -33,14 +33,14 @@ public class AirportService {
 	}
 
 	public String getSpecificAiportDetail(String code) {
-		final String endpoint = config.getProperty(Constants.AIRPORTS_ENDPOINT) + code;
+		final String endpoint = config.getProperty(Constants.AIRPORTS_ENDPOINT) + "/" + code;
 		String response = postRestTemplate_Call(endpoint);
 		return response;
 	}
 
 	public String getAFare(String originCode, String destinationCode) {
 		final String endpoint = config.getProperty(Constants.FARE_ENDPOINT) + originCode
-				+ config.getProperty(Constants.SLASH) + destinationCode;
+				+ "/" + destinationCode;
 		String response = postRestTemplate_Call(endpoint);
 		return response;
 	}

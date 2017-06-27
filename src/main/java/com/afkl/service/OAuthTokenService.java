@@ -45,9 +45,11 @@ public class OAuthTokenService {
 	private String extractAccessToken(String responseBody) {
 		Map<String, String> values = Splitter.on(config.getProperty(Constants.COMMA))
 				.withKeyValueSeparator(config.getProperty(Constants.SEMI_COLON)).split(responseBody);
-		if (values.containsKey(config.getProperty(Constants.ACCESS_TOKEN)))
-			return (String) values.get(config.getProperty(Constants.ACCESS_TOKEN));
+		if (values.containsKey(config.getProperty(Constants.ACCESS_TOKEN))) {
+            String accessToken = ((String) values.get(config.getProperty(Constants.ACCESS_TOKEN))).replace("\"","");
+            return accessToken;
+        }
 		else
 			return null;
-	}	
+	}
 }
